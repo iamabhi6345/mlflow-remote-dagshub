@@ -9,6 +9,9 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn import metrics 
 import mlflow 
 import os 
+import dagshub
+dagshub.init(repo_owner='iamabhi6345', repo_name='mlflow-remote-dagshub', mlflow=True)
+
 
 # Loading data 
 dataset = pd.read_csv('train.csv')
@@ -137,14 +140,13 @@ def mlflow_logging(model, x, y, name):
         mlflow.log_metric("AUC", auc)
         
         # mlflow.log_artifact("plots/ROC_curve.png")
-        remote_server_uri = "https://dagshub.com/entbappy/MLflow-Basic-Demo.mlflow"
-        mlflow.set_tracking_uri(remote_server_uri)
+        # remote_server_uri = "https://dagshub.com/entbappy/MLflow-Basic-Demo.mlflow"
+        # mlflow.set_tracking_uri(remote_server_uri)
         
-        if tracking_url_type_store != "file":
-            mlflow.sklearn.log_model(
-                model, "model", registered_model_name=name)
-        else:
-            mlflow.sklearn.log_model(lr, name)
+        # if tracking_url_type_store != "file":
+        mlflow.sklearn.log_model(model, "model", registered_model_name=name)
+        # else:
+        #     mlflow.sklearn.log_model(lr, name)
         
         
         
