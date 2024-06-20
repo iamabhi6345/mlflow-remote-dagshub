@@ -71,7 +71,7 @@ model_forest = grid_forest.fit(X_train, y_train)
 # Logistic regression
 lr = LogisticRegression(random_state=RANDOM_SEED)
 param_grid_log = {
-    'C': [100, 10, 1.0, 0.1, 0.01],
+    'C': [100,200,58 ,10, 1.0, 0.1, 0.01],
     'penalty': ['l1', 'l2'],
     'solver': ['liblinear']
 }
